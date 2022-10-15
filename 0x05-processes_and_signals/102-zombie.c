@@ -1,32 +1,38 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include "unistd.h"
 
 /**
- * main - creates 5 zombie processes
- *
- * Return: void
- */
-
-int main(void)
+ * infinite_while - a function that runs forever and returns nothing
+ * Return: 0 in the end
+*/
+int infinite_while(void)
 {
-	pid_t childpid;
-	int i;
-
-	for (i = 0; i < 5; i++)
-	{
-		childpid = fork();
-		if (childpid == 0)
-		{
-			printf("Zombie process created, PID: %i\n", getpid());
-			exit(0);
-		}
-	}
-
 	while (1)
 	{
 		sleep(1);
 	}
+	return (0);
+}
+
+/**
+ * main - the entry to a program that creats 5 zombie process
+ * Return: 0 on sucess
+*/
+int main(void)
+{
+	int children_processes = 0;
+	pid_t pid;
+
+	while (children_processes < 5)
+	{
+		pid = fork();
+		if (!pid)
+			break;
+		printf("Zombie process created, PID: %i\n", (int)pid);
+		children_processes++;
+	}
+	if (pid != 0)
+		infinite_while();
 	return (0);
 }
