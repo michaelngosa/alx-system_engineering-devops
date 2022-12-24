@@ -46,8 +46,8 @@ frontend  beta-scribbles.tech-https-frontend
         default_backend beta-scribbles.tech-backend
 
 
-backend beta-scribbles.tech-backend
+backend michaelngosa.tech-backend
         balance roundrobin
         server 914-web-01 52.87.254.156:80 check
-        server 914-web-02 34.201.61.241:80 check
+        server 914-web-02 100.26.241.63:80 check
 # end of parameters
